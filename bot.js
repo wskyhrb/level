@@ -9,17 +9,14 @@ const client = new Discord.Client();
 
 
 
- client.on('message', message => {
-    var prefix = "b-"
-    if (message.content === prefix + "date") {
-        var currentTime = new Date(),
-            السنة = currentTime.getFullYear(),
-            الشهر = currentTime.getMonth() + 1,
-            اليوم = currentTime.getDate();
-        message.channel.sendMessage( "التاريخ : " + اليوم + "-" + الشهر + "-" +السنة)
+client.on('message', message => {
+    if (message.content.startsWith("دعواتي")) {
+
+    message.guild.fetchInvites()
+    .then(invites => message.channel.send(`**:busts_in_silhouette:  اتيت ب     [${invites.find(invite => invite.inviter.id === message.author.id)}]    :calling:   عضو لهذا السيرفر    `))
+         
     }
 });
- 
  
  
  
