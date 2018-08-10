@@ -11,7 +11,7 @@ const client = new Discord.Client();
 
 
  client.on('message', message => {
-    var prefix = "b-"
+    var prefix = "+"
     if (message.content === prefix + "date") {
         var currentTime = new Date(),
             السنة = currentTime.getFullYear(),
@@ -25,7 +25,7 @@ const client = new Discord.Client();
  const misaka = new Set();
 var prefix = '*';
     client.on('message', async msg => {
-  if(msg.content.startsWith("رابط")) {
+  if(msg.content.startsWith("+رابط")) {
   if (misaka.has(msg.author.id)) {
     let misakaemb = new Discord.RichEmbed()
     .setDescription(`يجب عليك الانتظار 24 ساعه!`)
