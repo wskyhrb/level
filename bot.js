@@ -74,12 +74,10 @@ client.on('guildMemberAdd', member => {
         .setColor('RANDOM')
         .setThumbnail(memberavatar)
         .addField('🎽 | name :  ',`${member}`)
-        .addField('📢 | نورت السيرفر يا قلبي' , `Welcome to the server, ${member}`)
+        .addField('📢 | WELCOME TO LEVEL' , `Welcome to the server, ${member}`)
     
                 .addField('➡| انت العضو رقم',`${member.guild.memberCount}`)
-               
-                  .addField("Name:",`<@` + `${member.id}` + `>`, true)
-                     
+            
                                      .addField(' level shop', `${member.guild.name}`,true)
                                        
      .setFooter(`${member.guild.name}`)
