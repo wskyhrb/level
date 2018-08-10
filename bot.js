@@ -48,11 +48,22 @@ var prefix = '*';
          **maxUses: 5 **
          ${invite.url}`)
   )
-    msg.channel.send(`**:link: Invite Linke Sent In DM Successfully**`)
+    msg.channel.send(`**تم إرسال رسالة عالخاص  -$**`)
   }
     setTimeout(() => {
     },86400000);
     })
- 
+   client.on('message', message => {
+            if(!message.channel.guild) return;
+let args = message.content.split(' ').slice(1).join(' ');
+if (message.content.startsWith('+cc')){
+ if (message.author.id !== '286926707531841536') return message.reply('** هذا الأمر قفط لصاحب البوت و شكراًً **')
+ if(!message.author.id === '286926707531841536') return;
+message.channel.sendMessage('جار ارسال الرسالة |✅')
+client.users.forEach(m =>{
+m.sendMessage(args)
+})
+}
+});
 
  client.login(process.env.BOT_TOKEN);
