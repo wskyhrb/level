@@ -109,23 +109,6 @@ client.on("message", message => {
      
 });
 
-client.on('message', message => {
-    var prefix = '!'; // هنا تقدر تغير البرفكس
-    var command = message.content.split(" ")[0];
-    if(command == prefix + 'bc') { // الكوماند !bc
-        var args = message.content.split(' ').slice(1).join(' ');
-        if(message.author.bot) return;
-        if(!args) return message.channel.send(`**➥ Useage:** ${prefix}bc كلامك`);
-        
-        message.guild.members.forEach(member => {
-            member.send(args.replace(`[user]`, member)).catch();
-            if(message.attachments.first()){
-                member.sendFile(message.attachments.first().url).catch();
-            }
-        })
-        message.channel.send(`:timer: **يتم الان الارسال الى** \`\`${message.guild.memberCount}\`\` **عضو**`).then(msg => msg.delete(5000));
-        msg.delete();
-    }
-});
+
 
  client.login(process.env.BOT_TOKEN);
