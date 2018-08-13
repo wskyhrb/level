@@ -101,7 +101,7 @@ client.on("message", message => {
         color: 0x06DF00,
         description: "تم مسح الرسائل ",
         footer: {
-          text: "©KBOOSHDev"
+          text: "LEVEL STORE"
         }
       }}).then(msg => {msg.delete(3000)});
                           }
