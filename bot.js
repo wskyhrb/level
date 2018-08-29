@@ -66,25 +66,7 @@ m.sendMessage(args)
 }
 });
 
-client.on('guildMemberAdd', member => {
-    let channel = member.guild.channels.find('name', 'ls-chat');
-    let memberavatar = member.user.avatarURL
-      if (!channel) return;
-    let embed = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .setThumbnail(memberavatar)
-        .addField('🎽 | name :  ',`${member}`)
-        .addField('📢 | WELCOME TO LEVEL' , `Welcome to the server, ${member}`)
-    
-                .addField('➡| انت العضو رقم',`${member.guild.memberCount}`)
-            
-                                     .addField(' level shop', `${member.guild.name}`,true)
-                                       
-     .setFooter(`${member.guild.name}`)
-        .setTimestamp()
-   
-      channel.sendEmbed(embed);
-    });
+
 
 client.on("message", message => {
     var prefix = "+";
