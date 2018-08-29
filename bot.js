@@ -22,37 +22,7 @@ const client = new Discord.Client();
 });
  
  
- const misaka = new Set();
-var prefix = '*';
-    client.on('message', async msg => {
-  if(msg.content.startsWith("+رابط")) {
-  if (misaka.has(msg.author.id)) {
-    let misakaemb = new Discord.RichEmbed()
-    .setDescription(`يجب عليك الانتظار 24 ساعه!`)
-    .setColor(`RED`)
-    return msg.channel.send(misakaemb).then(message => {
-     message.delete(10000) 
-    })
-    
-    }
-    misaka.add(msg.author.id);
 
-  
-   msg.channel.createInvite({
-        thing: true,
-        maxUses: 5,
-        maxAge: 86400,
-  }).then(invite =>
-   msg.author.sendMessage(`
-         <@${msg.author.id}> 
-         **maxUses: 5 **
-         ${invite.url}`)
-  )
-    msg.channel.send(`**تم إرسال رسالة عالخاص  -$**`)
-  }
-    setTimeout(() => {
-    },86400000);
-    })
    client.on('message', message => {
             if(!message.channel.guild) return;
 let args = message.content.split(' ').slice(1).join(' ');
