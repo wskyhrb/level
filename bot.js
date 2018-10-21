@@ -2,172 +2,130 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
-
-
-
-
-
-
-
-
- client.on('message', message => {
-    var prefix = "+"
-    if (message.content === prefix + "date") {
-        var currentTime = new Date(),
-            السنة = currentTime.getFullYear(),
-            الشهر = currentTime.getMonth() + 1,
-            اليوم = currentTime.getDate();
-        message.channel.sendMessage( "التاريخ : " + اليوم + "-" + الشهر + "-" +السنة)
-    }
-});
+client.on('message', async message => {
+  let args = message.content.split("#");
+  if(message.content.startsWith(prefix + "mute")) {
+    if(!message.member.hasPermission("MUTE_MEMBERS")) return message.channel.send('').then(msg => {
+      msg.delete(3500);
+      message.delete(3500);
+    });
  
+    if(!message.guild.member(client.user).hasPermission("MUTE_MEMBERS")) return message.channel.send('').then(msg => {
+      msg.delete(3500);
+      message.delete(3500);
+    });
  
-
-   client.on('message', message => {
-            if(!message.channel.guild) return;
-let args = message.content.split(' ').slice(1).join(' ');
-if (message.content.startsWith('+cc')){
- if (message.author.id !== '286926707531841536') return message.reply('** هذا الأمر قفط لصاحب البوت و شكراًً **')
- if(!message.author.id === '286926707531841536') return;
-message.channel.sendMessage('جار ارسال الرسالة |✅')
-client.users.forEach(m =>{
-m.sendMessage(args)
-})
-}
-});
-
-
-
-client.on("message", message => {
-    var prefix = "+";
+    let mention = message.mentions.members.first();//kinggamer حقوق الفا كودز و
+    if(!mention) return  message.channel.send('').then(msg => { //kinggamer حقوق الفا كودز و
+      msg.delete(3500);
+      message.delete(3500);
+    });
  
-            var args = message.content.substring(prefix.length).split(" ");
-            if (message.content.startsWith(prefix + "مسح")) {
-   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('⚠ | **لا يوجد لديك صلاحية لمسح الشات**');
-        var msg;
-        msg = parseInt();
-      
-      message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
-      message.channel.sendMessage("", {embed: {
-        title: "Done | تــم مسح الشات",
-        color: 0x06DF00,
-        description: "تم مسح الرسائل ",
-        footer: {
-          text: "LEVEL STORE"
-        }
-      }}).then(msg => {msg.delete(3000)});
-                          }
-
-     
-});
-
-const fs = require('fs');
-const moment = require('moment');
-const jimp = require('jimp');
-const Canvas = require('canvas');
+    if(mention.id === message.author.id) return message.channel.send('**:x:You Cannot give mute to your self**').then(msg => {
+      msg.delete(3500);
+      message.delete(3500); //kinggamer حقوق الفا كودز و
+    });
+   
+    if(mention.hasPermission('ADMINISTRATOR')) return message.channel.send(`**:x: لا يمكن آعطاء ميوت لادارة السيرفر**`); //kinggamer حقوق الفا كودز و
  
-client.on('guildMemberAdd', member => {
-     const welcomer =  member.guild.channels.find('name', 'end');
-const w = ['./w1.png'];
+    if(message.guild.member(mention).roles.find('name', 'Muted')) return message.channel.send(`**:information_source: ${mention.user.username} Already Muted**`);
  
-         let Image = Canvas.Image,
-            canvas = new Canvas(400, 200),
-            ctx = canvas.getContext('2d');
-        fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
-            if (err) return console.log(err);
-            let BG = Canvas.Image;
-            let ground = new Image;
-            ground.src = Background;
-            ctx.drawImage(ground, 0, 0, 400, 200);
-             
-         
+   
+    if(mention.position >= message.guild.member(message.author).positon) return message.channel.send('You Donot Have Permission **Muted_Members** ').then(msg => {
+      msg.delete(3500);
+      message.delete(3500);
+    });
+   
+    if(mention.positon >= message.guild.member(client.user).positon) return message.channel.send('I Donot Have Permission **Muted_Members**').then(msg => {
+      msg.delete(3500);
+      message.delete(3500); //kinggamer حقوق الفا كودز و
+    });
+   
+    let duration = args[2];
+    if(!duration) message.channel.send(`**:hash: You Can Use ${prefix}mute @user Time Reason**`).then(msg => {
+      msg.delete(3500);
+      message.delete(3500);
+    });
  
-                let url = member.user.displayAvatarURL.endsWith(".webp") ? member.user.displayAvatarURL.slice(100) + ".png" : member.user.displayAvatarURL;
-                jimp.read(url, (err, ava) => {
-                    if (err) return console.log(err);
-                    ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
-                        if (err) return console.log(err);
-                       
-                        ctx.font = "bold 12px Arial";
-                        ctx.fontSize = '20px';
-                        ctx.fillStyle = "#f1f1f1";
-                        ctx.textAlign = "center";
-                        ctx.fillText(`welcome to Brix`, 300, 130);
-                       
-                        ctx.font = "bold 12px Arial";
-                        ctx.fontSize = '20px';
-                        ctx.fillStyle = "#f1f1f1";
-                        ctx.textAlign = "center";
-                        ctx.fillText(member.user.username, 200, 150);
+    if(isNaN(duration))  message.channel.send('').then(msg => {
+      msg.delete(3500);
+      message.delete(3500);
+    });
  
-                let Avatar = Canvas.Image;
-                              let ava = new Avatar;
-                              ava.src = buf;
-                              ctx.beginPath();
-                              ctx.arc(77, 101, 62, 0, Math.PI*2);
-                              ctx.stroke();
-                                 ctx.clip();
-                                 ctx.drawImage(ava, 13, 38, 128, 126);  
-                         
-               
-                             
-welcomer.sendFile(canvas.toBuffer())
+    let reason = message.content.split(" ").slice(3).join(" ");
+    if(!reason) reason = " [ **لم يذكر لماذا** ] ";
  
+    let thisEmbed = new Discord.RichEmbed()
+    .setAuthor(mention.user.username, mention.user.avatarURL)
+    .setTitle('**تم آعطائك ميوت**')
+    .addField('**__السيرفر__**',[ message.guild.name ]) //kinggamer حقوق الفا كودز و
+    .addField('**__تم آعطائك ميوت بواسطة__**', [ message.author ])
+    .addField('**__آلسبب__**',reason)
+    .addField('**__وقت الميوت__**',duration)
  
- 
-     
-     
-                    }  )  
-     
-                   
- 
-})
-      });                    
-});
-var dat = JSON.parse("{}");
-function forEachObject(obj, func) {
-    Object.keys(obj).forEach(function (key) { func(key, obj[key]) });
-}
-client.on("ready", () => {
-    var guild;
-    while (!guild)
-        guild = client.guilds.get("443180936897626114 ");
-    guild.fetchInvites().then((data) => {
-        data.forEach((Invite, key, map) => {
-            var Inv = Invite.code;
-            dat[Inv] = Invite.uses;
+    let role = message.guild.roles.find('name', 'Muted') || message.guild.roles.get(r => r.name === 'Muted');
+    if(!role) try {
+      message.guild.createRole({
+        name: "Muted",
+        permissions: 0 //kinggamer حقوق الفا كودز و
+      }).then(r => {
+        message.guild.channels.forEach(c => {
+          c.overwritePermissions(r , {
+            SEND_MESSAGES: false, //kinggamer حقوق الفا كودز و
+            READ_MESSAGES_HISTORY: false,
+            ADD_REACTIONS: false
+          });
         });
-    });
-});
- 
- 
- 
-client.on("guildMemberAdd", (member) => {
-    let channel = member.guild.channels.get("484294692868194304");
-    if (!channel) {
-        console.log("!the channel id it's not correct");
-        return;
+      }); //kinggamer حقوق الفا كودز و
+    } catch(e) {
+      console.log(e.stack);
     }
-    if (member.id == client.user.id) {
-        return;
-    }
-    console.log('-');
-    var guild;
-    while (!guild)
-        guild = client.guilds.get("443180936897626114");
-    guild.fetchInvites().then((data) => {
-        data.forEach((Invite, key, map) => {
-            var Inv = Invite.code;
-            if (dat[Inv])
-                if (dat[Inv] < Invite.uses) {
-                    setTimeout(function() {
- channel.send(`**invited by** ${Invite.inviter} `) ;
-                    },1500);
- }
-            dat[Inv] = Invite.uses;
-       
-       });
+    mention.addRole(role).then(() => {
+      mention.send(thisEmbed);
+      message.channel.send(`**:white_check_mark: ${mention.user.username}  Muted! :zipper_mouth:  **  `);
+      mention.setMute(true); //kinggamer حقوق الفا كودز و
     });
+    setTimeout(() => {
+      if(duration === 0) return;
+      mention.setMute(false);
+      mention.removeRole(role)
+    },duration * 60000); //kinggamer حقوق الفا كودز و
+  }
 });
+client.on('message', async message => {
+    let mention = message.mentions.members.first();
+let command = message.content.split(" ")[0];
+     command = command.slice(prefix.length);
+    let args = message.content.split(" ").slice(1);  //kinggamer حقوق الفا كودز و
+if(command === `unmute`) {2
+  if(!message.member.hasPermission("MUTE_MEMBERS")) return message.channel.sendMessage("**You Donot HavePermission Mute_Members**").then(m => m.delete(5000));
+if(!message.guild.member(client.user).hasPermission("MUTE_MEMBERS")) return message.reply("**I donot Have Permission Mute_Members**").then(msg => msg.delete(6000))
+ 
+  let kinggamer = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+     if(!kinggamer) return message.channel.send('').then(msg => {
+      msg.delete(3500);
+      message.delete(3500); //kinggamer حقوق الفا كودز و
+    });
+ 
+  let role = message.guild.roles.find (r => r.name === "Muted");
+ 
+  if(!role || !kinggamer.roles.has(role.id)) return message.channel.sendMessage(`**:information_source:${mention.user.username} لقد تم فك الميوت عنه مسبقا**`)
+ 
+  await kinggamer.removeRole(role) //kinggamer حقوق الفا كودز و
+  message.channel.sendMessage(`**:white_check_mark: ${mention.user.username}  Unmuted! **`);
+ 
+  return;
+ 
+  }
+ 
+});
+
+
+
+
+
+
+
+
 
  client.login(process.env.BOT_TOKEN);
