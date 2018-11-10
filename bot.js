@@ -315,7 +315,7 @@ function play(guild, song) {
 
 
 
-const adminprefix = "#";
+const adminprefix = "";
 const devs = ['286926707531841536','286926707531841536'];
 client.on('message', message => {
   var argresult = message.content.split(` `).slice(1).join(' ');
