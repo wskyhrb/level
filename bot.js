@@ -311,19 +311,7 @@ function play(guild, song) {
 	serverQueue.textChannel.send(`**${song.title}**, is now playing!`);
 }
 
-client.on('ready',async () => {
-console.log("Starting..");
-let g = client.guilds.get("504685916023947264");
-let c = g.channels.get("510263364346314763");
-if(c.type === 'voice') {
-c.join();
-setInterval(() => {
-if(!g.me.voiceChannel) c.join();
-}, 1);
-} else {
-console.log("Failed To Join:\n The Channel Type isn't \"text\"");
-}
-});
+
 
 
 
