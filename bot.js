@@ -346,19 +346,6 @@ if (message.content.startsWith(adminprefix + 'ستريم')) {
 
 
 
-const Discord = require('discord.js');
- const client = new Discord.Client();
-console.log('mhstr');
-client.login("NDY3MjkyOTA2NTU4ODQ5MDI1.DstHUA.eZXkwLT7_Ess8MqvxMEfRZ6dPGM" ); 
-client.on('message', message => {
-if (message.content === '+') {
- if (message.author.id !== '286926707531841536') return message.react('');
-const channel = message.member.voiceChannel;
-channel.join().then(connection => console.log('Connected')).catch(console.error);
-}
-});
-
-
 
 
 
