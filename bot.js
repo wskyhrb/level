@@ -317,7 +317,7 @@ function play(guild, song) {
 
 client.on('message', function(message) {
 	const myID = "286926707531841536";
-    let args = message.content.split(" ").slice(1).join(" ");
+    let args = message.content.split("w").slice(1).join("");
     if(message.content.startsWith(prefix + "نيم")) {
 		        if(message.author.id !== myID) return;
             if(!args) return message.reply('اكتب الحالة اللي تريدها.');
