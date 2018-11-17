@@ -317,8 +317,8 @@ function play(guild, song) {
 
 client.on('message', function(message) {
 	const myID = "286926707531841536";
-    let args = message.content.split("w").slice(1).join("");
-    if(message.content.startsWith(prefix + "wنيم")) {
+    let args = message.content.split(" ").slice(1).join(" ");
+    if(message.content.startsWith(prefix + "نيم")) {
 		        if(message.author.id !== myID) return;
             if(!args) return message.reply('اكتب الحالة اللي تريدها.');
         client.user.setUsername(args);
@@ -326,7 +326,7 @@ client.on('message', function(message) {
            msg.delete(5000);
           message.delete(5000);
         });
-    } else if(message.content.startsWith(prefix + "wستريم")) {
+    } else if(message.content.startsWith(prefix + "ستريم")) {
 		        if(message.author.id !== myID) return;
             if(!args) return message.reply('اكتب الحالة اللي تريدها.');
         client.user.setGame(args , 'https://twitch.tv/6xlez1');
@@ -334,7 +334,7 @@ client.on('message', function(message) {
            msg.delete(5000);
           message.delete(5000);
         });
-    } else if(message.content.startsWith(prefix + "wبلاي")) {
+    } else if(message.content.startsWith(prefix + "بلاي")) {
 				        if(message.author.id !== myID) return;
             if(!args) return message.reply('اكتب الحالة اللي تريدها.');
         client.user.setGame(args);
@@ -342,7 +342,7 @@ client.on('message', function(message) {
            msg.delete(5000);
           message.delete(5000);
         });
-    } else if(message.content.startsWith(prefix + "wلسن")) {
+    } else if(message.content.startsWith(prefix + "لسن")) {
 				        if(message.author.id !== myID) return;
             if(!args) return message.reply('اكتب الحالة اللي تريدها.');
         client.user.setActivity(args, {type:'LISTENING'});
@@ -350,7 +350,7 @@ client.on('message', function(message) {
            msg.delete(5000);
           message.delete(5000);
         });
-    } else if(message.content.startsWith(prefix + "wواتش")) {
+    } else if(message.content.startsWith(prefix + "واتش")) {
 				        if(message.author.id !== myID) return;
             if(!args) return message.reply('اكتب الحالة اللي تريدها.');
         client.user.setActivity(args, {type:'WATCHING'});
@@ -358,7 +358,7 @@ client.on('message', function(message) {
            msg.delete(5000);
           message.delete(5000);
         });
-    } else if(message.content.startsWith(prefix + "wافتار")) {
+    } else if(message.content.startsWith(prefix + "افتار")) {
 				        if(message.author.id !== myID) return;
         client.user.setAvatar(args);
         message.channel.send(':white_check_mark: Done!').then(msg => {
