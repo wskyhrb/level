@@ -19,7 +19,7 @@ client.user.setActivity(argresult , {type:'LISTENING'});
 } else 
 if (message.content.startsWith('!s')) {
   client.user.setGame(argresult, "https://www.twitch.tv/meercy");
-   message.channel.send(`${argresult} \:white_check_mark: )
+   message.channel.send(`${argresult} \` ` )
 }
 });
 
